@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Jassa - Crypto Admin Dashboard">
+    <meta property="og:title" content="Jassa - Crypto Admin Dashboard">
+    <meta property="og:description" content="Jassa - Crypto Admin Dashboard">
+    <meta name="format-detection" content="telephone=no">
+    <title>Gestion de contact</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{%static 'images/favicon.png'%}">
+    <link rel="stylesheet" href="{% static 'vendor/chartist/css/chartist.min.css' %}">
+    <link href="{% static 'vendor/bootstrap-select/dist/css/bootstrap-select.min.css' %}" rel="stylesheet">
+    <link href="{%static 'vendor/owl-carousel/owl.carousel.css' %}" rel="stylesheet">
+    <link href="{%static 'css/style.css'%}" rel="stylesheet">
+
+</head>
+<body>
+
+<!--*******************
+    Preloader start
+********************-->
+<div id="preloader">
+    <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+    </div>
+</div>
+<!--*******************
+    Preloader end
+********************-->
+
+<!--**********************************
+    Main wrapper start
+***********************************-->
+<div id="main-wrapper">
+
+    <!--**********************************
+        Nav header start
+    ***********************************-->
+
+    {% include 'header-up.html' %}
+    <!--**********************************
+        Nav header end
+    ***********************************-->
+
+
+    <!--**********************************
+        Header start
+    ***********************************-->
+    {% include 'header.html' %}
+    <!--**********************************
+        Header end ti-comment-alt
+    ***********************************-->
+
+    <!--**********************************
+        Sidebar start
+    ***********************************-->
+    {% include 'sidebar.html' %}
+    <!--**********************************
+        Sidebar end
+    ***********************************-->
+
+    <!--**********************************
+        Content body start
+    ***********************************-->
+    <div class="content-body">
+
+        <div class="container-fluid">
+
+            <div class="col-xl-6 col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Create a contact</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="basic-form">
+                            {% if messages %}
+
+                            <div class="alert alert-success">
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+
+                            </div>
+                            {% endif %}
+
+                            <form method="post" action="{% url 'create-contact' %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <div class="form-row">
+                                     <div class="form-group col-md-6">
+                                        {{ contact_form.matricule.label_tag }} {{ contact_form.matricule }}
+                                         {% if contact_form.matricule.errors %}
+                                        <small class="text-danger">{{ contact_form.matricule.errors }}</small>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ contact_form.image.label_tag }} {{ contact_form.image }}
+                                           {% if contact_form.image.errors %}
+                                        <small class="text-danger">{{ contact_form.image.errors }}</small>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ contact_form.pseudo.label_tag }} {{ contact_form.pseudo }}
+                                         {% if contact_form.pseudo.errors %}
+                                        <small class="text-danger">{{ contact_form.pseudo.errors }}</small>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ contact_form.city.label_tag }} {{ contact_form.city }}
+                                           {% if contact_form.city.errors %}
+                                        <small class="text-danger">{{ contact_form.city.errors }}</small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        {{ contact_form.state.label_tag }} {{ contact_form.state }}
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        {{ contact_form.contact.label_tag }} {{ contact_form.contact }}
+                                        {% if contact_form.contact.errors %}
+                                        <small class="text-danger">{{ contact_form.contact.errors }}</small>
+                                        {% endif %}
+                                    </div>
+
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Register</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!--**********************************
+        Footer start
+    ***********************************-->
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © Designed &copy; Developed by <a href="" target="_blank">Manfaily roland yao</a> 2023</p>
+        </div>
+    </div>
+    <!--**********************************
+        Footer end
+    ***********************************-->
+
+
+    <!--**********************************
+       Support ticket button start
+    ***********************************-->
+
+    <!--**********************************
+       Support ticket button end
+    ***********************************-->
+
+
+</div>
+<!--**********************************
+    Main wrapper end
+***********************************-->
+
+<!--**********************************
+    Scripts
+***********************************-->
+
+
+<!-- Chart piety plugin files -->
+<script src="{%static 'vendor/peity/jquery.peity.min.js'%}"></script>
+
+<!-- Apex Chart -->
+<script src="{%static 'vendor/apexchart/apexchart.js'%}"></script>
+
+<!-- Dashboard 1 -->
+<script src="{%static 'js/dashboard/dashboard-1.js'%}"></script>
+
+<script src="{%static 'vendor/owl-carousel/owl.carousel.js'%}"></script>
+
+
+<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="{%static 'vendor/global/global.min.js'%}"></script>
+<script src="{%static 'vendor/bootstrap-select/dist/js/bootstrap-select.min.js'%}"></script>
+<script src="{%static 'vendor/chart.js/Chart.bundle.min.js'%}"></script>
+<script src="{%static 'js/custom.min.js'%}"></script>
+<script src="{%static 'js/deznav-init.js'%}"></script>
+<script src="{%static 'js/demo.js'%}"></script>
+<script src="{%static 'js/styleSwitcher.js'%}"></script>
+
+
+</body>
+</html>
